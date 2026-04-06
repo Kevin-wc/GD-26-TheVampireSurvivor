@@ -22,7 +22,10 @@ public class CameraBehavior : MonoBehaviour
         if (player != null)
         {
             // Camera position based on player and offset
-            transform.position = new Vector3(player.position.x + offsetX, player.position.y + offsetY, -10f);
+            transform.position = new Vector3(
+                player.position.x + offsetX,
+                player.position.y + offsetY,
+                transform.position.z);
         }
     }
 }
