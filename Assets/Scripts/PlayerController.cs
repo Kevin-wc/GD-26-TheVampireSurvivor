@@ -8,11 +8,15 @@ public class PlayerController : MonoBehaviour
     [Header("Player Component References")]
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject destroyEffect;
 
     [Header("Player Settings")]
     [SerializeField] float speed;
+    public float playerMaxHealth;
+    public float playerCurrentHealth;
 
     private Vector2 moveInput;
+
 
     void Awake()
     {
@@ -31,6 +35,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        playerCurrentHealth = playerMaxHealth;
     }
 
     // Update is called once per frame
@@ -53,5 +59,15 @@ public class PlayerController : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+    }
+
+    public void TakeDamage(float damage)
+    {
+        playerCurrentHealth -= damage;
+        if (playerCurrentHealth <= 0)
+        {
+            gameObject.SetActive(false);
+            Instantiate(destroyEffect, transform.position, transform.rotation);
+        }
     }
 }
