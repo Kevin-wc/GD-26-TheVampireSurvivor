@@ -73,7 +73,7 @@ public class EnemyBehavior : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
-        DamageNumberController.Instance.CreateNumber(1, transform.position);
+        DamageNumberController.Instance.CreateNumber(damage, transform.position);
         pushCounter = pushTime;
         if (health <= 0)
         {

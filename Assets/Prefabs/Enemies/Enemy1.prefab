@@ -202,10 +202,10 @@ MonoBehaviour:
   spriteRenderer: {fileID: 9221229883044598037}
   rb: {fileID: 2383259624716839054}
   spriteFacesRight: 0
-  speed: 1.5
-  health: 3
+  speed: 1.25
+  health: 5
   damage: 1
-  experienceToGive: 6
+  experienceToGive: 2
   pushTime: 0.5
   destroyEffect: {fileID: 5746955113390867125, guid: 2d44d4baa90d94ec7b92e1e3a8b010ca, type: 3}
 --- !u!50 &2383259624716839054

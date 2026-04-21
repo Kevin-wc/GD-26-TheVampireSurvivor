@@ -17,6 +17,9 @@ public class UIController : MonoBehaviour
 
     public LevelUpButton[] levelUpButtons;
 
+    public GameObject shadowButton;
+    public GameObject bloodButton;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -52,6 +55,18 @@ public class UIController : MonoBehaviour
     {
         levelUpPanel.SetActive(true);
         Time.timeScale = 0f;
+
+        shadowButton.SetActive(true);
+        bloodButton.SetActive(true);
+
+        if (LevelUpManager.Instance.shadowWeapon.isMaxLevel())
+        {
+            shadowButton.SetActive(false);
+        }
+        if (LevelUpManager.Instance.bloodWeapon.isMaxLevel())
+        {
+            bloodButton.SetActive(false);
+        }
     }
     public void LevelUpPanelClose()
     {

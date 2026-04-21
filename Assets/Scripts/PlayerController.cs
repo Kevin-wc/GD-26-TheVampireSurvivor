@@ -115,6 +115,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void UpgradeMoveSpeed()
+    {
+        speed += 0.5f;
+    }
+
+    public void UpgradeHealth()
+    {
+        playerMaxHealth += 5;
+        playerCurrentHealth = playerMaxHealth;
+
+        if (playerCurrentHealth > playerMaxHealth)
+        {
+            playerCurrentHealth = playerMaxHealth;
+        }
+        UIController.Instance.UpdateHealthSlider();
+    }
+
     public void LevelUp()
     {
         experience -= playerLevels[currentLevel - 1];

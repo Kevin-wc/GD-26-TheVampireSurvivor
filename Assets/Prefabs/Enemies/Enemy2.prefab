@@ -195,9 +195,9 @@ MonoBehaviour:
   spriteRenderer: {fileID: 3779079516567811966}
   rb: {fileID: 3026153381214963992}
   spriteFacesRight: 1
-  speed: 1
-  health: 20
-  damage: 3
+  speed: 0.75
+  health: 15
+  damage: 4
   experienceToGive: 4
   pushTime: 0.3
   destroyEffect: {fileID: 5746955113390867125, guid: 2d44d4baa90d94ec7b92e1e3a8b010ca, type: 3}
