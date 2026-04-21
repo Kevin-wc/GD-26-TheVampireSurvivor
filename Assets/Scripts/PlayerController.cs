@@ -17,6 +17,10 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 moveInput;
 
+    private bool isImmune;
+    [SerializeField] private float immunnityDuration;
+    [SerializeField] private float immunityTimer;
+
 
     void Awake()
     {
@@ -37,6 +41,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
 
         playerCurrentHealth = playerMaxHealth;
+        UIController.Instance.UpdateHealthSlider();
     }
 
     // Update is called once per frame
@@ -54,6 +59,14 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("IsMoving", true);
         }
+        if (immunityTimer > 0)
+        {
+            immunityTimer -= Time.deltaTime;
+        }
+        else
+        {
+            isImmune = false;
+        }
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -63,11 +76,18 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        playerCurrentHealth -= damage;
-        if (playerCurrentHealth <= 0)
+        if (!isImmune)
         {
-            gameObject.SetActive(false);
-            Instantiate(destroyEffect, transform.position, transform.rotation);
+            isImmune = true;
+            immunityTimer = immunnityDuration;
+            playerCurrentHealth -= damage;
+            UIController.Instance.UpdateHealthSlider();
+            if (playerCurrentHealth <= 0)
+            {
+                gameObject.SetActive(false);
+                Instantiate(destroyEffect, transform.position, transform.rotation);
+                GameManager.Instance.GameOver();
+            }
         }
     }
 }

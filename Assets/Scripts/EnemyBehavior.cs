@@ -9,6 +9,8 @@ public class EnemyBehavior : MonoBehaviour
 
     [Header("Enemy Settings")]
     [SerializeField] private float speed;
+    [SerializeField] private float health;
+    [SerializeField] private float damage;
     private Vector3 direction;
     [SerializeField] private GameObject destroyEffect;
 
@@ -47,7 +49,16 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerController.Instance.TakeDamage(1);
+            PlayerController.Instance.TakeDamage(damage);
+
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
             Destroy(gameObject);
             Instantiate(destroyEffect, transform.position, transform.rotation);
         }

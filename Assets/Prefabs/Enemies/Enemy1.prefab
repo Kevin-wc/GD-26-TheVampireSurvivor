@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1690661979
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 313046ac7c3744dee881de35932c8fe1, type: 3}
@@ -174,7 +174,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1690661979
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -955609468180279937, guid: 125f37d696d9e499b9dc8f750d5739a3, type: 3}
@@ -203,6 +203,8 @@ MonoBehaviour:
   rb: {fileID: 2383259624716839054}
   spriteFacesRight: 0
   speed: 1.5
+  health: 10
+  damage: 1
   destroyEffect: {fileID: 5746955113390867125, guid: 2d44d4baa90d94ec7b92e1e3a8b010ca, type: 3}
 --- !u!50 &2383259624716839054
 Rigidbody2D:
