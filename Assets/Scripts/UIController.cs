@@ -56,16 +56,22 @@ public class UIController : MonoBehaviour
         levelUpPanel.SetActive(true);
         Time.timeScale = 0f;
 
-        shadowButton.SetActive(true);
-        bloodButton.SetActive(true);
+        if (shadowButton != null) shadowButton.SetActive(true);
+        if (bloodButton != null) bloodButton.SetActive(true);
 
-        if (LevelUpManager.Instance.shadowWeapon.isMaxLevel())
+        if (LevelUpManager.Instance != null)
         {
-            shadowButton.SetActive(false);
-        }
-        if (LevelUpManager.Instance.bloodWeapon.isMaxLevel())
-        {
-            bloodButton.SetActive(false);
+            if (LevelUpManager.Instance.shadowWeapon != null &&
+                LevelUpManager.Instance.shadowWeapon.isMaxLevel())
+            {
+                if (shadowButton != null) shadowButton.SetActive(false);
+            }
+
+            if (LevelUpManager.Instance.bloodWeapon != null &&
+                LevelUpManager.Instance.bloodWeapon.isMaxLevel())
+            {
+                if (bloodButton != null) bloodButton.SetActive(false);
+            }
         }
     }
     public void LevelUpPanelClose()

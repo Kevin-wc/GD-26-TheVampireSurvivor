@@ -40,7 +40,14 @@ public class ProjectileWeapon : Weapon
         GameObject bullet = Instantiate(projectilePrefab, spawnPosition, Quaternion.identity);
 
         ProjectileWeaponBullet bulletScript = bullet.GetComponent<ProjectileWeaponBullet>();
-        bulletScript.SetTarget(closestEnemy.transform, this);
+        if (bulletScript != null)
+        {
+            bulletScript.SetTarget(closestEnemy.transform, this);
+        }
+        else
+        {
+            Debug.LogError("ProjectileWeaponBullet is missing on the projectile prefab.");
+        }
     }
 
     EnemyBehavior FindClosestEnemy()

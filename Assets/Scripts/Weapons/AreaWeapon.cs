@@ -11,6 +11,8 @@ public class AreaWeapon : Weapon
     // Update is called once per frame
     void Update()
     {
+        if (!unlocked) return;
+
         spawnCounter -= Time.deltaTime;
         if (spawnCounter <= 0)
         {
@@ -19,4 +21,5 @@ public class AreaWeapon : Weapon
             Instantiate(prefab, spawnPos, transform.rotation, transform);
         }
     }
+
 }

@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        gameTime = 0.0f;
         gameActive = true;
     }
 
@@ -28,9 +29,10 @@ public class GameManager : MonoBehaviour
     {
         if (gameActive)
         {
+            Debug.Log(UIController.Instance);
             gameTime += Time.deltaTime;
             UIController.Instance.UpdateTimer(gameTime);
-            if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
             {
                 Pause();
             }
