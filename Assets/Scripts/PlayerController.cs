@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +21,13 @@ public class PlayerController : MonoBehaviour
     private bool isImmune;
     [SerializeField] private float immunnityDuration;
     [SerializeField] private float immunityTimer;
+
+    public int experience;
+    public int currentLevel;
+    public int maxLevel;
+    public List<int> playerLevels;
+
+    public Weapon activeWeapon;
 
 
     void Awake()
@@ -42,6 +50,12 @@ public class PlayerController : MonoBehaviour
 
         playerCurrentHealth = playerMaxHealth;
         UIController.Instance.UpdateHealthSlider();
+        UIController.Instance.UpdateExperienceSlider();
+
+        for (int i = playerLevels.Count; i < maxLevel; i++)
+        {
+            playerLevels.Add(Mathf.CeilToInt(playerLevels[playerLevels.Count - 1] * 1.1f + 5));
+        }
     }
 
     // Update is called once per frame
@@ -89,5 +103,23 @@ public class PlayerController : MonoBehaviour
                 GameManager.Instance.GameOver();
             }
         }
+    }
+
+    public void GetExperience(int experienceToGet)
+    {
+        experience += experienceToGet;
+        UIController.Instance.UpdateExperienceSlider();
+        if (experience >= playerLevels[currentLevel - 1])
+        {
+            LevelUp();
+        }
+    }
+
+    public void LevelUp()
+    {
+        experience -= playerLevels[currentLevel - 1];
+        currentLevel++;
+        UIController.Instance.UpdateExperienceSlider();
+        UIController.Instance.LevelUpPanelOpen();
     }
 }
